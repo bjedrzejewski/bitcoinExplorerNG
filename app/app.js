@@ -15,4 +15,6 @@ angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinServices']).
             otherwise({
                 redirectTo: '/'
             });
-    }]);
+    }]).factory('MyCache', function ($cacheFactory) {
+        return $cacheFactory('myCache');
+    });;

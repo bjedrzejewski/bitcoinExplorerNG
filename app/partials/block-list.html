@@ -4,7 +4,7 @@
         <a class="thumbnail" href="#/block/{{block.hash}}}}">
             <div class="caption">
                 <h3>Height: {{block.height}}</h3>
-                <p>Age: {{block.time | date}}</p>
+                <p>Date: {{block.time * 1000 | date}}</p>
                 <p>Transactions: {{block.tx.length}}</p>
                 <p>Size: {{block.size}}</p>
                 <p>Mined by: {{block.poolInfo.poolName}}</p>

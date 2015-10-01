@@ -6,8 +6,8 @@ var bitcoinServices = angular.module('bitcoinServices', ['ngResource']);
 
 bitcoinServices.factory('BitcoinBlock', ['$resource',
     function ($resource) {
-        return $resource('https://blockexplorer.com/api/block/:hashValue.json', {}, {
-            query: {method: 'GET', params: {hashValue: 'hashValue'}, isArray: false}
+        return $resource('https://blockexplorer.com/api/block/:hashValue.json', {id: '@hashValue'}, {
+            get: {method: 'GET', cache: true}
         });
     }]);
 
@@ -15,6 +15,6 @@ bitcoinServices.factory('BitcoinBlock', ['$resource',
 bitcoinServices.factory('LastBlockHash', ['$resource',
     function ($resource) {
         return $resource('https://blockexplorer.com/api/status?q=getLastBlockHash', {}, {
-            query: {method: 'GET', params: {}, isArray: false}
+            get: {method: 'GET'}
         });
     }]);

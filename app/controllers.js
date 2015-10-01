@@ -11,7 +11,6 @@ angular.module('bitcoinControllers', [])
 
         var blockRetriever = function (hash, arr, lengthLimit) {
             BitcoinBlock.get({hashValue: hash}, function (bitcoinBlock) {
-                console.log(bitcoinBlock);
                 arr.push(bitcoinBlock);
                 if (arr.length < lengthLimit) {
                     blockRetriever(bitcoinBlock.previousblockhash, arr, lengthLimit)
@@ -24,7 +23,6 @@ angular.module('bitcoinControllers', [])
         this.block = {};
 
         BitcoinBlock.get({hashValue: $routeParams.hash}, function (bitcoinBlock) {
-            console.log(bitcoinBlock);
             that.block = bitcoinBlock;
         });
 

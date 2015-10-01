@@ -29,7 +29,7 @@
         <p><strong>Size (bytes): </strong>{{bitcoinCtrl.block.size}}</p>
     </div>
     <div class="col-xs-12 col-md-6">
-        <p><strong>Timestamp: </strong>{{bitcoinCtrl.block.time}}</p>
+        <p><strong>Timestamp: </strong>{{bitcoinCtrl.block.time * 1000 | date:'yyyy-MM-dd HH:mm:ss Z'}}</p>
     </div>
     <div class="col-xs-12 col-md-6">
         <p><strong>Version: </strong>{{bitcoinCtrl.block.version}}</p>
