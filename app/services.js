@@ -11,6 +11,12 @@ bitcoinServices.factory('BitcoinBlock', ['$resource',
         });
     }]);
 
+bitcoinServices.factory('BitcoinBlockByHeight', ['$resource',
+    function ($resource) {
+        return $resource('https://blockexplorer.com/api/block-index/:height.json', {id: '@height'}, {
+            get: {method: 'GET', cache: true}
+        });
+    }]);
 
 bitcoinServices.factory('LastBlockHash', ['$resource',
     function ($resource) {

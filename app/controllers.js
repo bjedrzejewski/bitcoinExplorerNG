@@ -26,4 +26,14 @@ angular.module('bitcoinControllers', [])
             that.block = bitcoinBlock;
         });
 
+    }]).controller('BitcoinSearchCtrl', ['$routeParams', '$location', function ($routeParams, $location) {
+        var that = this;
+        this.target = '';
+
+        this.navigate = function(){
+            console.log('Navigating to '+that.target);
+            $location.path('/block/'+that.target);
+        }
+
+
     }]);
