@@ -42,47 +42,20 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Bitcoin Explorer!</a>
+    <a class="navbar-brand" href="#/">Bitcoin Explorer!</a>
   </div>
 
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <form class="navbar-form navbar-right" role="search">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Bitcoin hash/height/index">
+        <input type="text" class="form-control" placeholder="Bitcoin hash/height">
       </div>
       <button type="submit" class="btn btn-default">Search</button>
     </form>
   </div>
 </nav>
 
-<div class="row" ng-controller="BitcoinDetailsCtrl as blockCtrl">
-
-  <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="block in blockCtrl.blocks">
-    <a class="thumbnail" href="detail.html">
-      <div class="caption">
-        <h3>Height: {{block.height}}</h3>
-        <p>Age: {{block.time | date}}</p>
-        <p>Transactions: {{block.tx.length}}</p>
-        <p>Size: {{block.size}}</p>
-        <p>Mined by: {{block.poolInfo.poolName}}</p>
-      </div>
-    </a>
-  </div>
-
-</div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom container-fluid">
-  <nav class="navbar-right">
-    <ul class="pager">
-      <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-      <!--<li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>-->
-    </ul>
-  </nav>
-</nav>
-
-
-
-
+<div ng-view></div>
 
 </body>
 </html>

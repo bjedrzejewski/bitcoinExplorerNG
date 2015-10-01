@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="row" ng-controller="BitcoinListCtrl as blockCtrl">
 
-</body>
-</html>
+    <div class="col-xs-6 col-sm-4 col-md-3" ng-repeat="block in blockCtrl.blocks">
+        <a class="thumbnail" href="#/block/{{block.hash}}}}">
+            <div class="caption">
+                <h3>Height: {{block.height}}</h3>
+                <p>Age: {{block.time | date}}</p>
+                <p>Transactions: {{block.tx.length}}</p>
+                <p>Size: {{block.size}}</p>
+                <p>Mined by: {{block.poolInfo.poolName}}</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom container-fluid">
+    <nav class="navbar-right">
+        <ul class="pager">
+            <li class="previous"><a href="#/"><span aria-hidden="true">&larr;</span> Older</a></li>
+        </ul>
+    </nav>
+</nav>

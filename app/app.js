@@ -8,7 +8,7 @@ angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinServices']).
                 templateUrl: 'partials/block-list.html',
                 controller: 'BitcoinListCtrl'
             }).
-            when('/block/:phoneId', {
+            when('/block/:hash', {
                 templateUrl: 'partials/block-details.html',
                 controller: 'BitcoinDetailsCtrl'
             }).

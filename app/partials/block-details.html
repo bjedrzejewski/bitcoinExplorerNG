@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="row" ng-controller="BitcoinDetailsCtrl as bitcoinCtrl">
+    <div class="col-xs-12">
+        <h1>Block: #{{bitcoinCtrl.block.height}}</h1>
+    </div>
+    <div class="col-xs-12">
+        <h3><span
+                class="label label-info">BlockHash {{bitcoinCtrl.block.hash}} </span>
+        </h3>
+    </div>
+    <div class="col-xs-12">
+        <h2>Details</h2>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Number Of Transactions: </strong>{{bitcoinCtrl.block.tx.length}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Difficulty: </strong>{{bitcoinCtrl.block.difficulty}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Height: </strong>{{bitcoinCtrl.block.height}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Bits: </strong>{{bitcoinCtrl.block.bits}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Block Reward: </strong>{{bitcoinCtrl.block.reward}} BTC</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Size (bytes): </strong>{{bitcoinCtrl.block.size}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Timestamp: </strong>{{bitcoinCtrl.block.time}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Version: </strong>{{bitcoinCtrl.block.version}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Merkle Root: </strong>{{bitcoinCtrl.block.merkleroot}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Nonce: </strong>{{bitcoinCtrl.block.nonce}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Mined by: </strong>{{bitcoinCtrl.block.poolInfo.poolName}}</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <p><strong>Previous Block: </strong>{{bitcoinCtrl.block.previousblockhash}}</p>
+    </div>
+    <div class="col-xs-12">
+        <h2>Transactions</h2>
+    </div>
+    <div class="col-xs-12">
+        <ul>
+            <li ng-repeat="t in bitcoinCtrl.block.tx">
+                {{t}}
+            </li>
+        </ul>
+    </div>
+</div>
 
-</body>
-</html>
+<nav class="navbar navbar-default navbar-fixed-bottom container-fluid">
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/">Back to the Dashboard</a></li>
+    </ul>
+</nav>

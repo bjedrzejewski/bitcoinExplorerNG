@@ -1,26 +1,31 @@
-//var bitcoinControllers = angular.module('bitcoinControllers', []);
 
-//bitcoinControllers.controller('BitcoinBlockCtrl', ['$scope', 'BitcoinBlock', function ($scope, BitcoinBlock) {
 angular.module('bitcoinControllers', [])
-    .controller('BitcoinDetailsCtrl', ['$scope', 'BitcoinBlock', 'LastBlockHash', function ($scope, BitcoinBlock, LastBlockHash) {
+    .controller('BitcoinListCtrl', ['BitcoinBlock', 'LastBlockHash', function (BitcoinBlock, LastBlockHash) {
         var that = this;
-
         that.blocks = [];
 
-        LastBlockHash.get({hashValue: '00000000000000000138bfc87bc7fdcfa4b6e7303c92e9b8ce67f934578c3601'}, function (json) {
+        LastBlockHash.get({}, function (json) {
             var lengthLimit = 10;
             blockRetriever(json.lastblockhash, that.blocks, lengthLimit);
         });
 
-        var blockRetriever = function(hash, arr, lengthLimit){
+        var blockRetriever = function (hash, arr, lengthLimit) {
             BitcoinBlock.get({hashValue: hash}, function (bitcoinBlock) {
                 console.log(bitcoinBlock);
                 arr.push(bitcoinBlock);
-                if(arr.length < lengthLimit){
+                if (arr.length < lengthLimit) {
                     blockRetriever(bitcoinBlock.previousblockhash, arr, lengthLimit)
                 }
             });
         }
 
+    }]).controller('BitcoinDetailsCtrl', ['$routeParams', 'BitcoinBlock', function ($routeParams, BitcoinBlock) {
+        var that = this;
+        this.block = {};
+
+        BitcoinBlock.get({hashValue: $routeParams.hash}, function (bitcoinBlock) {
+            console.log(bitcoinBlock);
+            that.block = bitcoinBlock;
+        });
 
     }]);
