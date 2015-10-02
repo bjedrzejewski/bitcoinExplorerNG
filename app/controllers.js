@@ -18,13 +18,25 @@ angular.module('bitcoinControllers', [])
             });
         }
 
-    }]).controller('BitcoinDetailsCtrl', ['$routeParams', 'BitcoinBlock', function ($routeParams, BitcoinBlock) {
+    }]).controller('BitcoinDetailsCtrl', ['$routeParams', 'BitcoinBlock', 'BitcoinBlockByHeight', function ($routeParams, BitcoinBlock, BitcoinBlockByHeight) {
         var that = this;
         this.block = {};
+        that.rparam = $routeParams.hash;
 
-        BitcoinBlock.get({hashValue: $routeParams.hash}, function (bitcoinBlock) {
-            that.block = bitcoinBlock;
-        });
+
+
+        if (that.rparam.length === 66) {
+            BitcoinBlock.get({hashValue: that.rparam}, function (bitcoinBlock) {
+                that.block = bitcoinBlock;
+            });
+        } else {
+            BitcoinBlockByHeight.get({height: that.rparam}, function (json) {
+                that.rparam = json.blockHash;
+                BitcoinBlock.get({hashValue: that.rparam}, function (bitcoinBlock) {
+                    that.block = bitcoinBlock;
+                });
+            });
+        }
 
     }]).controller('BitcoinSearchCtrl', ['$routeParams', '$location', function ($routeParams, $location) {
         var that = this;
