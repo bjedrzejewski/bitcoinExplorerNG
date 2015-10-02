@@ -31,7 +31,7 @@ angular.module('bitcoinControllers', [])
 
 
 
-        if (that.rparam.length === 66) {
+        if (that.rparam.length === 64) {
             BitcoinBlock.get({hashValue: that.rparam}, function (bitcoinBlock) {
                 that.block = bitcoinBlock;
             });

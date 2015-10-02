@@ -6,7 +6,8 @@ angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinServices']).
         $routeProvider.
             when('/', {
                 templateUrl: 'partials/block-list.html',
-                controller: 'BitcoinListCtrl'
+                controller: 'BitcoinListCtrl',
+                controllerAs: 'blockCtrl'
             }).
             when('/block/:hash', {
                 templateUrl: 'partials/block-details.html',

@@ -1,4 +1,5 @@
-'use strict';
+(function() {
+    'use strict';
 
 /* Services */
 
@@ -24,3 +25,5 @@ bitcoinServices.factory('LastBlockHash', ['$resource',
             get: {method: 'GET'}
         });
     }]);
+
+})();

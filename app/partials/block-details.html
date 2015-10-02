@@ -40,8 +40,8 @@
     <div class="col-xs-12 col-md-6">
         <p><strong>Nonce: </strong>{{bitcoinCtrl.block.nonce}}</p>
     </div>
-    <div class="col-xs-12 col-md-6">
-        <p><strong>Mined by: </strong>{{bitcoinCtrl.block.poolInfo.poolName}}</p>
+    <div class="col-xs-12 col-md-6" ng-show="{{bitcoinCtrl.block.poolInfo}}">
+        <p><strong>Mined by: </strong><a href="{{bitcoinCtrl.block.poolInfo.url}}" target="_blank">{{bitcoinCtrl.block.poolInfo.poolName}}</a></p>
     </div>
     <div class="col-xs-12 col-md-6">
         <p><strong>Previous Block: </strong>{{bitcoinCtrl.block.previousblockhash}}</p>
