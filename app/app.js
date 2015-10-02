@@ -11,7 +11,8 @@ angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinServices']).
             }).
             when('/block/:hash', {
                 templateUrl: 'partials/block-details.html',
-                controller: 'BitcoinDetailsCtrl'
+                controller: 'BitcoinDetailsCtrl',
+                controllerAs: 'bitcoinDetailsCtrl'
             }).
             otherwise({
                 redirectTo: '/'
