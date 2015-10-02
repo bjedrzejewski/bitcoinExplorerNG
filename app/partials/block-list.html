@@ -11,13 +11,10 @@
             </div>
         </a>
     </div>
-
+    <nav class="navbar navbar-default navbar-fixed-bottom container-fluid">
+            <form class="navbar-form navbar-right" ng-submit="blockCtrl.showPrevious()">
+                <button type="submit" class="btn btn-default">Show Previous</button>
+            </form>
+    </nav>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom container-fluid">
-    <nav class="navbar-right">
-        <ul class="pager">
-            <li class="previous"><a href="#/"><span aria-hidden="true">&larr;</span> Older</a></li>
-        </ul>
-    </nav>
-</nav>

@@ -3,11 +3,17 @@ angular.module('bitcoinControllers', [])
     .controller('BitcoinListCtrl', ['BitcoinBlock', 'LastBlockHash', function (BitcoinBlock, LastBlockHash) {
         var that = this;
         that.blocks = [];
+        var lengthLimit = 10;
 
         LastBlockHash.get({}, function (json) {
-            var lengthLimit = 10;
             blockRetriever(json.lastblockhash, that.blocks, lengthLimit);
         });
+
+        this.showPrevious = function (){
+            var lastBlock = that.blocks[that.blocks.length-1].hash;
+            that.blocks = [];
+            blockRetriever(lastBlock, that.blocks, lengthLimit);
+        }
 
         var blockRetriever = function (hash, arr, lengthLimit) {
             BitcoinBlock.get({hashValue: hash}, function (bitcoinBlock) {
