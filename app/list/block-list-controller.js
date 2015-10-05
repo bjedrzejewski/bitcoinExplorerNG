@@ -2,7 +2,7 @@
  * Created by bjedrzejewski on 05/10/2015.
  */
 
-angular.module('bitcoinControllers', ['ngStorage'])
+angular.module('bitcoinControllers', ['bitcoinServices', 'ngStorage'])
     .controller('BitcoinListCtrl', ['BitcoinBlock', 'LastBlockHash','$localStorage', function (BitcoinBlock, LastBlockHash, $localStorage) {
         var that = this;
         if($localStorage.lengthLimit){

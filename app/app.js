@@ -17,4 +17,9 @@ angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinDetailsControl
             otherwise({
                 redirectTo: '/'
             });
-    }]);
+    }])//;
+
+//angular.module('myAppTest', [])
+    .controller('test', function() {
+        this.hello = 'world';
+    });
