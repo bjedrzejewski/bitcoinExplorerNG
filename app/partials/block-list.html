@@ -12,7 +12,7 @@
             <form>
                 <label for="selectLimit">Number of blocks:</label>
                 <select id="selectLimit" name="mySelect"
-                        ng-init="blockCtrl.lengthLimit = 10"
+                        ng-init="blockCtrl.lengthLimit"
                         ng-change="blockCtrl.loadVals()"
                         ng-options="option for option in blockCtrl.lengthOptions"
                         ng-model="blockCtrl.lengthLimit">

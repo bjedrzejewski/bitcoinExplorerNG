@@ -1,6 +1,11 @@
-angular.module('bitcoinControllers', [])
-    .controller('BitcoinListCtrl', ['BitcoinBlock', 'LastBlockHash', '$filter', function (BitcoinBlock, LastBlockHash, $filter) {
+angular.module('bitcoinControllers', ['ngStorage'])
+    .controller('BitcoinListCtrl', ['BitcoinBlock', 'LastBlockHash','$localStorage', function (BitcoinBlock, LastBlockHash, $localStorage) {
         var that = this;
+        if($localStorage.lengthLimit){
+            that.lengthLimit = $localStorage.lengthLimit;
+        } else {
+            that.lengthLimit = 10;
+        }
         that.blocks = [];
         that.lengthOptions = [
             10,12,24,48
@@ -9,6 +14,7 @@ angular.module('bitcoinControllers', [])
 
         this.loadVals = function(){LastBlockHash.get({}, function (json) {
             that.blocks = [];
+            $localStorage.lengthLimit= that.lengthLimit;
             that.blockRetriever(json.lastblockhash, that.blocks, that.lengthLimit);
         })};
 
