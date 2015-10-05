@@ -1,5 +1,5 @@
 angular.module('bitcoinControllers', [])
-    .controller('BitcoinListCtrl', ['BitcoinBlock', 'LastBlockHash', function (BitcoinBlock, LastBlockHash) {
+    .controller('BitcoinListCtrl', ['BitcoinBlock', 'LastBlockHash', '$filter', function (BitcoinBlock, LastBlockHash, $filter) {
         var that = this;
         that.blocks = [];
         that.lengthOptions = [
@@ -22,6 +22,8 @@ angular.module('bitcoinControllers', [])
 
         this.blockRetriever = function (hash, arr, lengthLimit) {
             BitcoinBlock.get({hashValue: hash}, function (bitcoinBlock) {
+                //I will add formated date to the bitcoin block here
+                bitcoinBlock.fromDate = moment($filter('date')(bitcoinBlock.time * 1000,'yyyy-MM-dd hhmmss'), 'YYYY-MM-DD hhmmss').fromNow();
                 arr.push(bitcoinBlock);
                 if (arr.length < lengthLimit) {
                     that.progressValue = 100 * (arr.length / lengthLimit);
