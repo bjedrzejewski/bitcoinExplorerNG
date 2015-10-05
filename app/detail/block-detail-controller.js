@@ -2,7 +2,7 @@
  * Created by bjedrzejewski on 05/10/2015.
  */
 
-angular.module('bitcoinControllers', ['ngStorage']).controller('BitcoinDetailsCtrl', ['$routeParams', 'BitcoinBlock', 'BitcoinBlockByHeight', function ($routeParams, BitcoinBlock, BitcoinBlockByHeight) {
+angular.module('bitcoinDetailsControllers', ['ngStorage']).controller('BitcoinDetailsCtrl', ['$routeParams', 'BitcoinBlock', 'BitcoinBlockByHeight', function ($routeParams, BitcoinBlock, BitcoinBlockByHeight) {
     var that = this;
     that.rparam = $routeParams.hash;
     that.reqFail = false;

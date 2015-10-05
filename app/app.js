@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinServices', 'myFilters', 'blockListDirectives']).
+angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinDetailsControllers', 'bitcoinServices', 'myFilters', 'blockListDirectives']).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
             when('/', {
