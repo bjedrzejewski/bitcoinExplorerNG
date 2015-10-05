@@ -5,12 +5,12 @@ angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinServices', 'my
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
             when('/', {
-                templateUrl: 'partials/block-list.html',
+                templateUrl: 'list/block-list.html',
                 controller: 'BitcoinListCtrl',
                 controllerAs: 'blockCtrl'
             }).
             when('/block/:hash', {
-                templateUrl: 'partials/block-details.html',
+                templateUrl: 'detail/block-details.html',
                 controller: 'BitcoinDetailsCtrl',
                 controllerAs: 'bitcoinDetailsCtrl'
             }).
