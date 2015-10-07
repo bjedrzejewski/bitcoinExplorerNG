@@ -28,7 +28,7 @@ angular.module('bitcoinControllers', ['bitcoinServices', 'ngStorage'])
             var lastBlock = that.blocks[that.blocks.length - 1].hash;
             that.blocks = [];
             that.blockRetriever(lastBlock, that.blocks, that.lengthLimit);
-        }
+        };
 
         this.blockRetriever = function (hash, arr, lengthLimit) {
             BitcoinBlock.get({hashValue: hash}, function (bitcoinBlock) {
@@ -40,7 +40,7 @@ angular.module('bitcoinControllers', ['bitcoinServices', 'ngStorage'])
                     that.progressValue = 100;
                 }
             });
-        }
+        };
 
     }]).controller('BitcoinSearchCtrl', ['$routeParams', '$location', function ($routeParams, $location) {
         var that = this;
