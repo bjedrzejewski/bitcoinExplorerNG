@@ -67,7 +67,7 @@
     <div class="col-xs-12">
         <ul>
             <li ng-repeat="t in bitcoinDetailsCtrl.block.tx">
-                {{t}}
+                <a href="#/tx/{{t}}">{{t}}</a>
             </li>
         </ul>
     </div>

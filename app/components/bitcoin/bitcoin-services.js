@@ -20,6 +20,11 @@ bitcoinServices.factory('BitcoinBlock', ['$resource',
         return $resource('https://blockexplorer.com/api/status?q=getLastBlockHash', {}, {
             get: {method: 'GET'}
         });
+    }]).factory('TxData', ['$resource',
+    function ($resource) {
+        return $resource('https://blockexplorer.com/api/tx/:hashValue', {id: '@hashValue'}, {
+            get: {method: 'GET'}
+        });
     }]);
 
 })();

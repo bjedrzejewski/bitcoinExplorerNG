@@ -1,0 +1,11 @@
+<div ng-show="txCtrl.reqFail" class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Request failed</h3>
+    </div>
+    <div class="panel-body">
+        The software could not find a transaction for hash/id: {{txCtrl.rparam}}. Try different value.
+    </div>
+</div>
+<div ng-show="txCtrl.tx">
+    {{txCtrl.tx}}
+</div>

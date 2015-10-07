@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinDetailsControllers', 'bitcoinServices', 'myFilters', 'blockListDirectives']).
+angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinTransactionControllers', 'bitcoinDetailsControllers', 'bitcoinServices', 'myFilters', 'blockListDirectives']).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
             when('/', {
@@ -13,6 +13,11 @@ angular.module('myApp', ['ngRoute', 'bitcoinControllers', 'bitcoinDetailsControl
                 templateUrl: 'detail/block-details.html',
                 controller: 'BitcoinDetailsCtrl',
                 controllerAs: 'bitcoinDetailsCtrl'
+            }).
+            when('/tx/:hash', {
+                templateUrl: 'transaction/transaction-view.html',
+                controller: 'TransactionCtrl',
+                controllerAs: 'txCtrl'
             }).
             otherwise({
                 redirectTo: '/'
