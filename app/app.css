@@ -10,6 +10,24 @@
     stroke-width: 1px;
 }
 
+.expanded{
+    fill: green;
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+.ended{
+    fill: gold;
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
+.initNode{
+    fill: red;
+    stroke: #fff;
+    stroke-width: 1px;
+}
+
 .link {
     stroke: #777;
     stroke-width: 2px;

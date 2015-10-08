@@ -34,7 +34,7 @@ angular.module('txDirectives', []).directive('txGraph', [
                     var force = d3.layout.force()
                         .size([width, height]);
 
-                    force.linkDistance(20).charge(-50).chargeDistance(100);
+                    force.linkDistance(20).charge(-50).chargeDistance(100).linkStrength(0.5);
 
                     force.on('tick', function () {
 
@@ -76,6 +76,18 @@ angular.module('txDirectives', []).directive('txGraph', [
                             .data(inNodes)
                             .enter().append('circle')
                             .attr('class', 'node');
+
+                        svg.selectAll('.node').each(function(d){
+                            if (d.initNode) {
+                                d3.select(this).classed('initNode', true)
+                            }
+                            else if (d.expanded) {
+                                d3.select(this).classed('expanded', true)
+                            }
+                            else if (d.ended) {
+                                d3.select(this).classed('ended', true)
+                            }
+                        });
 
                         force
                             .nodes(inNodes)
