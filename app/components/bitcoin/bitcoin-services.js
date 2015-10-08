@@ -23,7 +23,7 @@ bitcoinServices.factory('BitcoinBlock', ['$resource',
     }]).factory('TxData', ['$resource',
     function ($resource) {
         return $resource('https://blockexplorer.com/api/tx/:hashValue', {id: '@hashValue'}, {
-            get: {method: 'GET'}
+            get: {method: 'GET', cache: true}
         });
     }]);
 
