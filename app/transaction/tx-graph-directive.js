@@ -6,13 +6,15 @@ angular.module('txDirectives', []).directive('txGraph', [
         return {
             restrict: 'E',
             scope: {
-                nodes: '@',
-                links: '@'
+                nodes: '=',
+                links: '='
             },
             link: function (scope, element) {
 
+                var svg;
+
                 function draw(inNodes, inLinks) {
-                    if(inLinks.length == 0)
+                    if (inLinks.length == 0)
                         return;
 
                     //clear it first
@@ -25,28 +27,19 @@ angular.module('txDirectives', []).directive('txGraph', [
                     var nodes = inNodes,
                         links = inLinks;
 
-                    var svg = d3.select(element[0]).append("svg")
+                    svg = d3.select(element[0]).append("svg")
                         .attr('width', width)
                         .attr('height', height);
 
                     var force = d3.layout.force()
-                        .size([width, height])
-                        .nodes(nodes)
-                        .links(links);
+                        .size([width, height]);
 
-                    force.linkDistance(width / 15).charge(-50);
-
-                    var link = svg.selectAll('.link')
-                        .data(links)
-                        .enter().append('line')
-                        .attr('class', 'link');
-
-                    var node = svg.selectAll('.node')
-                        .data(nodes)
-                        .enter().append('circle')
-                        .attr('class', 'node');
+                    force.linkDistance(50).charge(-200);
 
                     force.on('tick', function () {
+
+                        var node = svg.selectAll('.node');
+                        var link = svg.selectAll('.link');
 
                         node.attr('r', width / 150)
                         node.attr('r', width / 150)
@@ -72,13 +65,34 @@ angular.module('txDirectives', []).directive('txGraph', [
 
                     });
 
-                    force.start();
+                    scope.addNodes = function (inNodes, inLinks) {
+
+                        svg.selectAll('.link')
+                            .data(inLinks)
+                            .enter().append('line')
+                            .attr('class', 'link');
+
+                        svg.selectAll('.node')
+                            .data(inNodes)
+                            .enter().append('circle')
+                            .attr('class', 'node');
+
+                        force
+                            .nodes(inNodes)
+                            .links(inLinks);
+
+                        force.start();
+                    }
+
+                    scope.addNodes(nodes, links);
                 };
 
+
                 scope.$watch('links', function () {
-                   // if (scope.links && scope.links.length > 0) {
-                        draw(JSON.parse(scope.nodes), JSON.parse(scope.links));
-                   // }
+                    if (svg)
+                        scope.addNodes(scope.nodes, scope.links);
+                    else
+                        draw(scope.nodes, scope.links);
                 }, true);
             }
         };
