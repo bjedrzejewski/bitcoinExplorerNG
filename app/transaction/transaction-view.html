@@ -9,5 +9,8 @@
 <div ng-show="txCtrl.tx">
     <h3>Transaction: {{txCtrl.tx.txid}}</h3>
     <h4>Graph representing the transaction:</h4>
-    <tx-graph></tx-graph>
+    <button ng-click="txCtrl.expandNodes()">Expand the nodes</button>
+    <div style="margin: auto; width: 640px">
+        <tx-graph nodes="{{txCtrl.nodes}}" links="{{txCtrl.links}}"></tx-graph>
+    </div>
 </div>

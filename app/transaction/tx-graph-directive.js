@@ -6,62 +6,79 @@ angular.module('txDirectives', []).directive('txGraph', [
         return {
             restrict: 'E',
             scope: {
-                nodes: '=',
-                links: '='
+                nodes: '@',
+                links: '@'
             },
             link: function (scope, element) {
 
-                //drawing of the chart
-                var width = 640,
-                    height = 480;
+                function draw(inNodes, inLinks) {
+                    if(inLinks.length == 0)
+                        return;
 
-                var svg = d3.select(element[0]).append("svg")
-                    .attr('width', width)
-                    .attr('height', height);
+                    //clear it first
+                    d3.select(element[0]).html("");
 
-                var nodes = [
-                    { x:   width/3, y: height/2 },
-                    { x: 2*width/3, y: height/2 }
-                ];
+                    //drawing of the chart
+                    var width = 640,
+                        height = 480;
 
-                var links = [
-                    { source: 0, target: 1 }
-                ];
+                    var nodes = inNodes,
+                        links = inLinks;
 
-                var force = d3.layout.force()
-                    .size([width, height])
-                    .nodes(nodes)
-                    .links(links);
+                    var svg = d3.select(element[0]).append("svg")
+                        .attr('width', width)
+                        .attr('height', height);
 
-                force.linkDistance(width/2);
+                    var force = d3.layout.force()
+                        .size([width, height])
+                        .nodes(nodes)
+                        .links(links);
 
-                var link = svg.selectAll('.link')
-                    .data(links)
-                    .enter().append('line')
-                    .attr('class', 'link');
+                    force.linkDistance(width / 15).charge(-50);
 
-                var node = svg.selectAll('.node')
-                    .data(nodes)
-                    .enter().append('circle')
-                    .attr('class', 'node');
+                    var link = svg.selectAll('.link')
+                        .data(links)
+                        .enter().append('line')
+                        .attr('class', 'link');
 
-                force.on('tick', function() {
-                    node.attr('r', width/25)
-                        .attr('cx', function(d) { return d.x; })
-                        .attr('cy', function(d) { return d.y; });
-                    link.attr('x1', function(d) { return d.source.x; })
-                        .attr('y1', function(d) { return d.source.y; })
-                        .attr('x2', function(d) { return d.target.x; })
-                        .attr('y2', function(d) { return d.target.y; });
+                    var node = svg.selectAll('.node')
+                        .data(nodes)
+                        .enter().append('circle')
+                        .attr('class', 'node');
 
-                });
+                    force.on('tick', function () {
 
-                force.start();
+                        node.attr('r', width / 150)
+                        node.attr('r', width / 150)
+                            .attr('cx', function (d) {
+                                return d.x;
+                            })
+                            .attr('cy', function (d) {
+                                return d.y;
+                            });
 
-                scope.$watch('links', function(){
-                    if(scope.links && scope.links.length > 0){
-                        //what happens when data changes
-                    }
+                        link.attr('x1', function (d) {
+                            return d.source.x;
+                        })
+                            .attr('y1', function (d) {
+                                return d.source.y;
+                            })
+                            .attr('x2', function (d) {
+                                return d.target.x;
+                            })
+                            .attr('y2', function (d) {
+                                return d.target.y;
+                            });
+
+                    });
+
+                    force.start();
+                };
+
+                scope.$watch('links', function () {
+                   // if (scope.links && scope.links.length > 0) {
+                        draw(JSON.parse(scope.nodes), JSON.parse(scope.links));
+                   // }
                 }, true);
             }
         };
