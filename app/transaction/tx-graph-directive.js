@@ -34,7 +34,7 @@ angular.module('txDirectives', []).directive('txGraph', [
                     var force = d3.layout.force()
                         .size([width, height]);
 
-                    force.linkDistance(50).charge(-200);
+                    force.linkDistance(10).charge(-200);
 
                     force.on('tick', function () {
 
@@ -89,10 +89,12 @@ angular.module('txDirectives', []).directive('txGraph', [
 
 
                 scope.$watch('links', function () {
-                    if (svg)
+                    if (svg) {
                         scope.addNodes(scope.nodes, scope.links);
-                    else
+                    }
+                    else {
                         draw(scope.nodes, scope.links);
+                    }
                 }, true);
             }
         };
