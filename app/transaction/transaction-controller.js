@@ -31,6 +31,8 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
                             var thisNumber = that.nodes.length;
                             var originNumber = that.uNodes[i2].oNumber;
                             newTx.oNumber = thisNumber;
+                            newTx.x = that.uNodes[i2].x;
+                            newTx.y = that.uNodes[i2].y;
                             that.links.push({'target': newTx.oNumber, 'source': that.uNodes[i2].oNumber});
                             that.nodes.push(newTx);
                             that.newUNodes.push(newTx);

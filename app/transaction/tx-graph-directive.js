@@ -34,7 +34,7 @@ angular.module('txDirectives', []).directive('txGraph', [
                     var force = d3.layout.force()
                         .size([width, height]);
 
-                    force.linkDistance(10).charge(-200);
+                    force.linkDistance(20).charge(-50).chargeDistance(100);
 
                     force.on('tick', function () {
 
