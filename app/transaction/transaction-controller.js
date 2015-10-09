@@ -4,8 +4,8 @@
 
 angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('TransactionCtrl', ['$routeParams', 'TxData', function ($routeParams, TxData) {
     var that = this;
-    this.nodes = [];
-    this.links = [];
+    that.nodes = [];
+    that.links = [];
 
     that.rparam = $routeParams.hash;
     that.reqFail = false;
@@ -64,6 +64,8 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
             that.tx = tx;
             that.tx.oNumber = 0;
             that.tx.initNode = true;
+            that.tx.x = 200;
+            that.tx.y = 200;
             that.nodes.push(tx);
             that.newUNodes.push(tx);
         }, function (errorResult) {
