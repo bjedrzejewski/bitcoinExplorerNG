@@ -111,7 +111,8 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
                         that.newUNodes.push(newTx);
                         asyncExpandInner(i2, ++j);
                     }, function (errorResult) {
-                        console.log('error: ' + errorResult);
+                        console.log('error: ' + errorResult +' retrieving next');
+                        asyncExpandInner(i2, ++j);
                     });
                 else {
                     that.uNodes[i2].ended = true;
