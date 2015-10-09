@@ -91,7 +91,11 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
                 }
             }
         }
-        asyncExpandInner(i2, 0);
+        if(that.uNodes[i2].expanded){
+            callback(++i2);
+        } else {
+            asyncExpandInner(i2, 0);
+        }
     }
 
     if (that.rparam.length === 64) {
