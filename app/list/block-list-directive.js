@@ -6,6 +6,6 @@ angular.module('blockListDirectives', []).directive('bitcoinPanel', function(){
     return {
         restrict: 'E',
         scope: {block: '='},
-        templateUrl: '/app/list/bitcoin-panel.html'
+        templateUrl: '../app/list/bitcoin-panel.html'
     }
 });
