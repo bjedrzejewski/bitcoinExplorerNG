@@ -7,7 +7,8 @@ angular.module('txDirectives', []).directive('txGraph', [
             restrict: 'E',
             scope: {
                 nodes: '=',
-                links: '='
+                links: '=',
+                dblclickf: '&'
             },
             link: function (scope, element) {
 
@@ -135,7 +136,9 @@ angular.module('txDirectives', []).directive('txGraph', [
                             .data(inNodes)
                             .enter().append('circle')
                             .attr('class', 'node')
+                            .on('click', scope.dblclickf(this))
                             .call(drag);
+
 
                         svg.selectAll('.node').each(function (d) {
                             if (d.initNode) {

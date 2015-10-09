@@ -14,6 +14,10 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
     that.newUNodes = [];
     that.expanding = false;
 
+    that.clickExpand = function(d){
+        console.log('click expand ' + d.txid);
+    }
+
     //function that expands and updates nodes
     that.expandNodes = function () {
         //will work because js is single threaded
