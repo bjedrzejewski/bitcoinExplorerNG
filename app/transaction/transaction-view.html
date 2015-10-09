@@ -11,6 +11,7 @@
     <h4>Graph representing the transaction:</h4>
     <button ng-click="txCtrl.expandNodes()">Expand the nodes</button>
     <button ng-click="txCtrl.autoExpand()">Auto expand the nodes</button>
+    Nodes count: {{txCtrl.nodes.length}}
     <div style="margin-left: auto; margin-right: auto; margin-top:20px; width: 820px">
         <tx-graph nodes="txCtrl.nodes" links="txCtrl.links"></tx-graph>
     </div>
