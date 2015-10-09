@@ -75,7 +75,10 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
             if (i1 >= that.uNodes.length) {
                 that.expanding = false;
                 //runs forever
-                that.autoExpand();
+                setTimeout(function () {
+                    that.autoExpand();
+                }, 200);
+
             } else {
                 expandNode(i1, asyncExpandForever);
             }
@@ -101,8 +104,8 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
                         var originNumber = that.uNodes[i2].oNumber;
                         that.uNodes[i2].expanded = true;
                         newTx.oNumber = thisNumber;
-                        newTx.x = that.uNodes[i2].x;
-                        newTx.y = that.uNodes[i2].y;
+                       // newTx.x = that.uNodes[i2].x;
+                       // newTx.y = that.uNodes[i2].y;
                         that.links.push({'target': newTx.oNumber, 'source': that.uNodes[i2].oNumber});
                         that.nodes.push(newTx);
                         that.newUNodes.push(newTx);
@@ -119,14 +122,16 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
     }
 
     if (that.rparam.length === 64) {
+        that.expanding = true;
         TxData.get({hashValue: that.rparam}, function (tx) {
             that.tx = tx;
             that.tx.oNumber = 0;
             that.tx.initNode = true;
-            that.tx.x = 200;
-            that.tx.y = 200;
+            that.tx.x = 400;
+            that.tx.y = 300;
             that.nodes.push(tx);
             that.newUNodes.push(tx);
+            that.expanding = false;
         }, function (errorResult) {
             that.reqFail = true;
         });

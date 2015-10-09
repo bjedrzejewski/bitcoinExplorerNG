@@ -6,6 +6,7 @@ angular.module('txDirectives', []).directive('txGraph', [
         return {
             restrict: 'E',
             scope: {
+                expanding: '=',
                 nodes: '=',
                 links: '=',
                 clickf: '&'
@@ -53,14 +54,14 @@ angular.module('txDirectives', []).directive('txGraph', [
                     var force = d3.layout.force()
                         .size([width, height]);
 
-                    force.linkDistance(30).charge(-100).chargeDistance(100).linkStrength(0.5);
+                    force.linkDistance(20).charge(-20).chargeDistance(50).gravity(0.0);
 
                     force.on('tick', function () {
 
                         var node = svg.selectAll('.node');
                         var link = svg.selectAll('.link');
 
-                        node.attr('r', width / 100)
+                        node.attr('r', width / 200)
                             .attr('cx', function (d) {
                                 return d.x;
                             })
@@ -163,7 +164,7 @@ angular.module('txDirectives', []).directive('txGraph', [
                 };
 
 
-                scope.$watch('nodes', function () {
+                scope.$watch('expanding', function () {
                     if (svg) {
                         scope.addNodes(scope.nodes, scope.links);
                     }
