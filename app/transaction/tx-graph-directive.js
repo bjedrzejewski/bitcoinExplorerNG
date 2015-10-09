@@ -25,6 +25,8 @@ angular.module('txDirectives', []).directive('txGraph', [
                         .on("drag", dragged)
                         .on("dragend", dragended);
 
+
+
                     //clear it first
                     d3.select(element[0]).html("");
 
@@ -42,6 +44,10 @@ angular.module('txDirectives', []).directive('txGraph', [
                         .append("g")
                         ;
 
+                    svg.append("rect")
+                        .attr("width", "100%")
+                        .attr("height", "100%")
+                        .attr("fill", "#DDFFFE");
 
                     var force = d3.layout.force()
                         .size([width, height]);
