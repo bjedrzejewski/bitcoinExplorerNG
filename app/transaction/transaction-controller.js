@@ -111,7 +111,6 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
                         console.log('error: ' + errorResult);
                     });
                 else {
-                    console.log('bingo ended');
                     that.uNodes[i2].ended = true;
                     asyncExpandInner(i2, ++j);
                 }
