@@ -129,6 +129,7 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
             that.tx.initNode = true;
             that.tx.x = 400;
             that.tx.y = 300;
+            that.tx.fixed = true;
             that.nodes.push(tx);
             that.newUNodes.push(tx);
             that.expanding = false;
