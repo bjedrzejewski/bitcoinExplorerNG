@@ -8,7 +8,7 @@ angular.module('txDirectives', []).directive('txGraph', [
             scope: {
                 nodes: '=',
                 links: '=',
-                dblclickf: '&'
+                clickf: '&'
             },
             link: function (scope, element) {
 
@@ -136,7 +136,7 @@ angular.module('txDirectives', []).directive('txGraph', [
                             .data(inNodes)
                             .enter().append('circle')
                             .attr('class', 'node')
-                            .on('click', scope.dblclickf(this))
+                            .on('click', scope.clickf(this))
                             .call(drag);
 
 

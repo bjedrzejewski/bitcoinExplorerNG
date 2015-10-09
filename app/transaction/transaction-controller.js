@@ -14,27 +14,48 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
     that.newUNodes = [];
     that.expanding = false;
 
-    that.clickExpand = function(d){
-        console.log('click expand ' + d.txid);
+    that.clickExpand = function (d) {
+        if (that.expanding) {
+            return;
+        }
+        that.expanding = true;
+        prepareNodesArrays();
+
+        for (var k = 0; k < that.uNodes.length; k++) {
+            if (d.txid === that.uNodes[k].txid) {
+                expandNode(k, function () {
+                    that.expanding = false;
+                });
+            }
+        }
     }
 
     //function that expands and updates nodes
+    function prepareNodesArrays() {
+        for (var k = 0; k < that.uNodes.length; ++k) {
+            if (!that.uNodes[k].expanded) {
+                that.newUNodes.push(that.uNodes[k]);
+            }
+        }
+        that.uNodes = that.newUNodes;
+        that.newUNodes = [];
+    }
+
     that.expandNodes = function () {
         //will work because js is single threaded
         if (that.expanding) {
             return;
         }
         that.expanding = true;
-        that.uNodes = that.newUNodes;
-        that.newUNodes = [];
 
+        prepareNodesArrays();
         function asyncExpand(i1) {
             if (i1 >= that.uNodes.length) {
                 that.expanding = false;
                 //finishes
                 return;
             } else {
-                expandNode(i1, 0, asyncExpand);
+                expandNode(i1, asyncExpand);
             }
         }
 
@@ -56,14 +77,19 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
                 //runs forever
                 that.autoExpand();
             } else {
-                expandNode(i1, 0, asyncExpandForever);
+                expandNode(i1, asyncExpandForever);
             }
         }
 
         asyncExpandForever(0);
     }
 
-    function expandNode(i2, j, callback) {
+    function expandNode(i2, callback) {
+        if (that.uNodes[i2].expanded) {
+            callback(++i2);
+        } else {
+            asyncExpandInner(i2, 0);
+        }
         function asyncExpandInner(i2, j) {
             if (j >= that.uNodes[i2].vin.length) {
                 callback(++i2);
@@ -90,11 +116,6 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
                     asyncExpandInner(i2, ++j);
                 }
             }
-        }
-        if(that.uNodes[i2].expanded){
-            callback(++i2);
-        } else {
-            asyncExpandInner(i2, 0);
         }
     }
 
