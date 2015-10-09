@@ -12,15 +12,21 @@ angular.module('bitcoinTransactionControllers', ['txDirectives']).controller('Tr
     //unexpanded nodes - 2 arrays for processing
     that.uNodes = [];
     that.newUNodes = [];
+    that.expanding = false;
 
     //function that expands and updates nodes
     that.expandNodes = function () {
         //needs handling for this being repeatedly called
+        if(that.expanding){
+            return;
+        }
+        that.expanding = true;
         that.uNodes = that.newUNodes;
         that.newUNodes = [];
 
         function asyncExpand(i1) {
             if (i1 >= that.uNodes.length) {
+                that.expanding = false;
                 return;
             } else {
                 function asyncExpandInner(i2, j) {
